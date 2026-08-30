@@ -5,7 +5,7 @@ export const products = [
     slug: "bamboo-storage-box",
     description:
       "A simple and durable storage solution made from bamboo.",
-    price: 24,
+    price: 399,
     category: "Home",
     image: "/assets/images/products/product-bamboo-storage.jpg",
     featured: true,
@@ -16,7 +16,7 @@ export const products = [
     slug: "organic-cotton-tote",
     description:
       "A reusable everyday tote made from organic cotton.",
-    price: 18,
+    price: 129,
     category: "Lifestyle",
     image: "/assets/images/products/product-organic-cotton-tote-bag.jpg",
     featured: true,
@@ -27,7 +27,7 @@ export const products = [
     slug: "reusable-water-bottle",
     description:
       "A reusable bottle designed for everyday hydration.",
-    price: 32,
+    price: 199,
     category: "Lifestyle",
     image: "/assets/images/products/product-reusable-water-bottle.jpg",
     featured: true,
@@ -38,7 +38,7 @@ export const products = [
     slug: "bamboo-toothbrush",
     description:
       "A simple everyday toothbrush with a bamboo handle.",
-    price: 12,
+    price: 29,
     category: "Personal Care",
     image: "/assets/images/products/product-bamboo-toothbrush.jpg",
     featured: true,
@@ -49,7 +49,7 @@ export const products = [
     slug: "natural-soap",
     description:
       "A gentle soap made with naturally inspired ingredients.",
-    price: 14,
+    price: 100,
     category: "Personal Care",
     image: "/assets/images/products/product-natural-handmade-soap.jpg",
     featured: false,
@@ -60,7 +60,7 @@ export const products = [
     slug: "recycled-notebook",
     description:
       "A minimalist notebook made using recycled materials.",
-    price: 16,
+    price: 120,
     category: "Lifestyle",
     image: "/assets/images/products/product-recycled-notebook.jpg",
     featured: false,
@@ -71,7 +71,7 @@ export const products = [
     slug: "bamboo-kitchen-organizer",
     description:
       "A practical organizer designed for modern kitchens.",
-    price: 28,
+    price: 599,
     category: "Kitchen",
     image: "/assets/images/products/product-bamboo-kitchen-utensils.jpg",
     featured: false,
@@ -82,7 +82,7 @@ export const products = [
     slug: "reusable-food-container",
     description:
       "A reusable container for everyday food storage.",
-    price: 22,
+    price: 499,
     category: "Kitchen",
     image: "/assets/images/products/product-reusable-water-bottle.jpg",
     featured: false,

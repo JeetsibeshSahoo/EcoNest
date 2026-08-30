@@ -37,7 +37,7 @@ function ProductCard({ product }) {
                 </Link>
 
                 <span className='shrink-0 font-semibold text-[#173F35]'>
-                    ${product.price}
+                    ₹{product.price}
                 </span>
             </div>
         </div>
