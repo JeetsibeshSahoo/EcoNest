@@ -4,7 +4,7 @@ import Button from '../common/Button'
 
 function BrandIntroduction() {
   return (
-    <section className='bg-white py-20 sm:py-20 lg:py-28'>
+    <section className='bg-white py-20 sm:py-24 lg:py-28'>
         <Container>
             <div className='mx-auto max-w-3xl text-center'>
                 <p className='text-sm font-semibold uppercase tracking-[0.2em] text-[#173F35]'>
