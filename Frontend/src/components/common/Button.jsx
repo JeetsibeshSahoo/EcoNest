@@ -17,6 +17,8 @@ function Button({
         "bg-[#8FAF9F] text-[#17201D] hover:bg-[#7f9f8f]",
         outline:
         "border border-[#173F35] text-[#173F35] hover:bg-[#173F35] hover:text-white",
+        light:
+        "bg-white text-[#173F35] hover:bg-[#F7F6F1]",
     }
 
     const styles = `${baseStyles} ${variants[variant]} ${className}`
