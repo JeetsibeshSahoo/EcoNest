@@ -11,7 +11,7 @@ function AboutHero() {
                     {aboutHero.eyebrow}
                 </p>
 
-                <h1 className='mt-5 font-serif text-5xl leading-[1.05] tracking-tight text-[#17201D] sm:text-6xl lg:text-7xl'>
+                <h1 className='mt-5 font-serif text-5xl leading-tight text-[#17201D] sm:text-6xl lg:text-7xl'>
                     {aboutHero.title}
                 </h1>
 
