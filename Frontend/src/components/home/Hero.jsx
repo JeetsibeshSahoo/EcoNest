@@ -6,13 +6,13 @@ function Hero() {
   return (
     <section className='overflow-hidden bg-[#F7F6F1]'>
         <Container>
-            <div className='grid min-h-[calc(100vh-80px)] items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24'>
+            <div className='grid min-h-[calc(100vh-80px)] items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-20'>
                 <div className='max-w-xl'>
                     <p className='mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-[#173F35]'>
                         Eco-friendly living
                     </p>
 
-                    <h1 className='font-serif text-5xl leading-[1.05] tracking-tight text-[#17201D] sm:text-6xl lg:text-8xl'>
+                    <h1 className='font-serif text-5xl leading-[1.05] tracking-tight text-[#17201D] sm:text-6xl lg:text-7xl'>
                         Sustainable living, <span className='text-[#173F35] block'>
                             thoughtfully designed.
                         </span>
@@ -39,7 +39,7 @@ function Hero() {
                         <img 
                         src="/assets/images/hero/hero.jpg" 
                         alt="Eco-friendly products in a modern natural setting" 
-                        className='h-[420px] w-full object-cover sm:h-[520px] lg:h-[620px]'
+                        className='h-[420px] w-full object-cover sm:h-[460px]'
                         />
                     </div>
                 </div>
