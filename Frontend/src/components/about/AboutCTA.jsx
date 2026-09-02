@@ -10,7 +10,7 @@ function AboutCTA() {
             Discover EcoNest
           </p>
 
-          <h2 className="mt-4 font-serif text-4xl leading-tight text-white sm:text-5xl">
+          <h2 className="mt-4 font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
             Find something better for everyday life.
           </h2>
 

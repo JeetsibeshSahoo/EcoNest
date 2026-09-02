@@ -11,7 +11,7 @@ function AboutStory() {
                     <img 
                     src={aboutStory.image} 
                     alt="The story behind EcoNest"
-                    className='h-[420px] w-full object-cover sm:h-[520px] lg:h-[600px]'
+                    className='h-[420px] w-full object-cover sm:h-[520px]'
                     />
                 </div>
 
@@ -20,11 +20,11 @@ function AboutStory() {
                         {aboutStory.eyebrow}
                     </p>
 
-                    <h2 className="mt-4 font-serif text-4xl leading-tight text-[#17201D] sm:text-5xl">
+                    <h2 className="mt-5 font-serif text-4xl leading-tight text-[#17201D] sm:text-5xl">
                         {aboutStory.title}
                     </h2>
 
-                    <p className="mt-6 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+                    <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
                         {aboutStory.description}
                     </p>
                 </div>

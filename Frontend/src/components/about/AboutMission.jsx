@@ -13,11 +13,11 @@ function AboutMission() {
               {aboutMission.eyebrow}
             </p>
 
-            <h2 className="mt-4 font-serif text-4xl leading-tight text-[#17201D] sm:text-5xl">
+            <h2 className="mt-5 font-serif text-4xl leading-tight text-[#17201D] sm:text-5xl">
               {aboutMission.title}
             </h2>
 
-            <p className="mt-6 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+            <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
               {aboutMission.description}
             </p>
           </div>
@@ -26,7 +26,7 @@ function AboutMission() {
             <img
               src={aboutMission.image}
               alt="EcoNest mission"
-              className="h-[420px] w-full object-cover sm:h-[520px] lg:h-[600px]"
+              className="h-[420px] w-full object-cover sm:h-[520px]"
             />
           </div>
 

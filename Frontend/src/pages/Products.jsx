@@ -1,10 +1,11 @@
 import React from 'react'
+import ProductHero from '../components/products/ProductHero'
 
 function Products() {
   return (
-    <div>
-      <h1>Products Page</h1>
-    </div>
+    <main>
+      <ProductHero />
+    </main>
   )
 }
 
