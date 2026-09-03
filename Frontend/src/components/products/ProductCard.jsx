@@ -4,21 +4,25 @@ import { Link } from 'react-router-dom'
 
 
 function ProductCard({ product }) {
+
+    const productUrl = `/products/${product.slug}`
+
   return (
     <article className='group'>
         <Link
-        to={`/products/${product.slug}`}
-        className='block'
+        to={productUrl}
+        className='block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2'
         >
             <div className='relative aspect-square overflow-hidden rounded-2xl bg-gray-100'>
                 <img 
                 src={product.image} 
                 alt={product.name}
+                loading='lazy'
                 className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
                 />
 
                 <span className='absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#173F35] opacity-0 shadow-sm transition-all duration-300 group-hover:opacity-100'>
-                    <ArrowUpRight size={18} />
+                    <ArrowUpRight size={18} aria-hidden="true" />
                 </span>
             </div>
         </Link>
@@ -30,8 +34,8 @@ function ProductCard({ product }) {
 
             <div className='mt-1 flex items-start justify-between gap-4'>
                 <Link
-                to={`/products/${product.slug}`}
-                className='font-medium text-[#17201D] transition-colors hover:text-[#173F35]'
+                to={productUrl}
+                className='rounded-sm font-medium text-[#17201D] transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2'
                 >
                     {product.name}
                 </Link>
