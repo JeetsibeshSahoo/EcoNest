@@ -1,11 +1,20 @@
-import React from 'react'
-import Container from '../common/Container'
-import { Link } from 'react-router-dom'
-import { ArrowLeft } from "lucide-react"
-
+import { useState } from "react"
+import Container from "../common/Container"
+import { Link } from "react-router-dom"
+import { ArrowLeft, Minus, Plus } from "lucide-react"
 
 function ProductDetailsContent({ product }) {
-    return (
+  const [quantity, setQuantity] = useState(1)
+
+  const decreaseQuantity = () => {
+    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1))
+  }
+
+  const increaseQuantity = () => {
+    setQuantity((currentQuantity) => currentQuantity + 1)
+  }
+
+  return (
     <section className="py-8 sm:py-12">
       <Container>
         <Link
@@ -43,6 +52,39 @@ function ProductDetailsContent({ product }) {
             </p>
 
             <div className="mt-8">
+              <p className="mb-3 text-sm font-medium text-gray-700">
+                Quantity
+              </p>
+
+              <div className="inline-flex items-center overflow-hidden rounded-full border border-gray-300">
+                <button
+                  type="button"
+                  onClick={decreaseQuantity}
+                  aria-label="Decrease quantity"
+                  className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
+                >
+                  <Minus size={16} aria-hidden="true" />
+                </button>
+
+                <span
+                  className="flex h-11 min-w-12 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]"
+                  aria-live="polite"
+                >
+                  {quantity}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={increaseQuantity}
+                  aria-label="Increase quantity"
+                  className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
+                >
+                  <Plus size={16} aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-6">
               <button
                 type="button"
                 className="w-full rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2 sm:w-auto"
