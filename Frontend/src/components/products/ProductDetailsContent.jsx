@@ -2,16 +2,28 @@ import { useState } from "react"
 import Container from "../common/Container"
 import { Link } from "react-router-dom"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 
 function ProductDetailsContent({ product }) {
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const decreaseQuantity = () => {
-    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1))
+    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
   }
 
   const increaseQuantity = () => {
-    setQuantity((currentQuantity) => currentQuantity + 1)
+    setQuantity((currentQuantity) => currentQuantity + 1);
+  }
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        product,
+        quantity,
+      })
+    )
   }
 
   return (
@@ -87,6 +99,7 @@ function ProductDetailsContent({ product }) {
             <div className="mt-6">
               <button
                 type="button"
+                onClick={handleAddToCart}
                 className="w-full rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2 sm:w-auto"
               >
                 Add to cart
