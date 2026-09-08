@@ -1,13 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Container from "../common/Container"
 import { Link } from "react-router-dom"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
 
 function ProductDetailsContent({ product }) {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart.items)
 
   const decreaseQuantity = () => {
     setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
@@ -18,6 +20,7 @@ function ProductDetailsContent({ product }) {
   }
 
   const handleAddToCart = () => {
+
     dispatch(
       addToCart({
         product,

@@ -1,8 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const CART_STORAGE_KEY = "econest-cart";
+
+const getInitialCartItems = () => {
+    try {
+        const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+        if (!storedCart) {
+            return [];
+        }
+
+        const parseCart = JSON.parse(storedCart);
+
+        if (!Array.isArray(parseCart)) {
+            return [];
+        }
+
+        return parseCart;
+
+    } catch (error) {
+        console.error("Failed to load cart from localStorage:", error);
+
+        return [];
+    }
+}
 
 const initialState = {
-    items : []
+    items : getInitialCartItems(),
 };
 
 const cartSlice = createSlice({
@@ -74,6 +98,8 @@ export const {
   decreaseQuantity,
   removeFromCart,
   clearCart,
-} = cartSlice.actions
+} = cartSlice.actions;
+
+export { CART_STORAGE_KEY }
 
 export default cartSlice.reducer

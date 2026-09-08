@@ -7,7 +7,7 @@ function CartSummary() {
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
-  )
+  );
 
   return (
     <aside className="rounded-2xl bg-gray-50 p-6">

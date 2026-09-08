@@ -22,7 +22,7 @@ function EmptyCart() {
 
         <Link
           to="/products"
-          className="mt-8 inline-flex rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+          className="mt-8 inline-flex rounded-full bg-[#173F35] px-6 py-4 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
         >
           Continue Shopping
         </Link>

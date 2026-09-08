@@ -1,7 +1,5 @@
-import React from 'react'
-
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
-
 import Container from "../components/common/Container"
 import CartItem from "../features/cart/CartItem"
 import CartSummary from "../features/cart/CartSummary"
@@ -9,6 +7,8 @@ import EmptyCart from "../features/cart/EmptyCart"
 
 function Cart() {
   const cartItems = useSelector((state) => state.cart.items)
+
+  
 
   if (cartItems.length === 0) {
     return <EmptyCart />
