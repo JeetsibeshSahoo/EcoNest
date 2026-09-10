@@ -4,16 +4,12 @@ import { Menu, X, ShoppingCart } from "lucide-react"
 import { useSelector } from "react-redux"
 
 import { navigationItems } from "../../data/navigation"
+import { selectCartItemCount } from "../../features/cart/cartSelectors"
 
 function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const cartItems = useSelector((state) => state.cart.items)
-
-  const cartItemCount = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  )
+  const cartItemCount = useSelector(selectCartItemCount);
 
   const closeMenu = () => {
     setIsMenuOpen(false)

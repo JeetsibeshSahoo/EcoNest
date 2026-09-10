@@ -1,13 +1,10 @@
 import React from 'react'
 import { useSelector } from "react-redux"
+import { selectCartSubtotal } from './cartSelectors'
 
 function CartSummary() {
-  const cartItems = useSelector((state) => state.cart.items)
 
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const subtotal = useSelector(selectCartSubtotal);
 
   return (
     <aside className="rounded-2xl bg-gray-50 p-6">
