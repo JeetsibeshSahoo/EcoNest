@@ -9,6 +9,8 @@ function CartItem({ item }) {
     const itemUrl = `/products/${item.slug}`;
     const dispatch = useDispatch();
 
+    const itemTotal = item.price * item.quantity;
+
   return (
     <article className='flex gap-4 border-b border-gray-200 py-6 sm:gap-6'>
         <Link
@@ -46,7 +48,7 @@ function CartItem({ item }) {
                         <Minus size={14} aria-hidden="true" />
                     </button>
 
-                    <span className='flex h-9 min-w-10 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]'>
+                    <span className='flex h-9 min-w-10 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]' aria-live='polite'>
                         {item.quantity}
                     </span>
 
@@ -60,24 +62,23 @@ function CartItem({ item }) {
                     </button>
                 </div>
 
-                <button
-                type='button'
-                onClick={() => dispatch(removeFromCart(item.id))}
-                aria-label={`Remove ${item.name} from cart`}
-                className='flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
-                >
-                    <Trash2 size={17} aria-hidden="true" />
-                </button>
+                <div className='text-right'>
+                    <p className='font-semibold text-[#173F35]'>
+                        ₹{itemTotal}
+                    </p>
+
+                    <button
+                    type="button"
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                    aria-label={`Remove ${item.name} from cart`}
+                    className="mt-1 inline-flex items-center gap-1 text-xs text-gray-400 transition-colors hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    >
+                    <Trash2 size={14} aria-hidden="true" />
+                    Remove
+                    </button>
+                </div>
             </div>
-
         </div>
-
-        <div className='hidden shrink-0 text-right sm:block'>
-            <p className='font-semibold text-[#173F35]'>
-                ₹{item.price * item.quantity}
-            </p>
-        </div>
-
     </article>
   )
 }

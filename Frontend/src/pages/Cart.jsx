@@ -11,7 +11,6 @@ function Cart() {
   const isCartEmpty = useSelector(selectIsCartEmpty);
 
   
-
   if (isCartEmpty) {
     return <EmptyCart />
   }
