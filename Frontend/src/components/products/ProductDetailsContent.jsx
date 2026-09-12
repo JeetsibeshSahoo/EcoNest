@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Container from "../common/Container"
 import { Link } from "react-router-dom"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../features/cart/cartSlice";
 
 function ProductDetailsContent({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.items)
 
   const decreaseQuantity = () => {
     setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
@@ -27,6 +27,10 @@ function ProductDetailsContent({ product }) {
         quantity,
       })
     )
+    setIsAdded(true) 
+    setTimeout(() => { 
+      setIsAdded(false)
+     }, 1500)
   }
 
   return (
@@ -103,9 +107,12 @@ function ProductDetailsContent({ product }) {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="w-full rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2 sm:w-auto"
+                aria-live="polite"
+                className={`w-full rounded-full px-6 py-3.5 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:w-auto ${
+                  isAdded ? "bg-[#2F6B5B] focus-visible:ring-[#2F6B5B]" : "bg-[#173F35] hover:bg-[#122F29] focus-visible:ring-[#173F35]"
+                }`}
               >
-                Add to cart
+                {isAdded ? "Added to cart ✓" : "Add to cart"}
               </button>
             </div>
           </div>
