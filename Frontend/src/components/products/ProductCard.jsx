@@ -12,6 +12,7 @@ function ProductCard({ product }) {
         <Link
         to={productUrl}
         className='block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2'
+        aria-label={`View ${product.name}`}
         >
             <div className='relative aspect-square overflow-hidden rounded-2xl bg-gray-100'>
                 <img 
@@ -21,7 +22,10 @@ function ProductCard({ product }) {
                 className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
                 />
 
-                <span className='absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#173F35] opacity-0 shadow-sm transition-all duration-300 group-hover:opacity-100'>
+                <span 
+                className='absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#173F35] opacity-0 shadow-sm transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100' 
+                aria-hidden="true"
+                >
                     <ArrowUpRight size={18} aria-hidden="true" />
                 </span>
             </div>
@@ -44,6 +48,9 @@ function ProductCard({ product }) {
                     ₹{product.price}
                 </span>
             </div>
+            <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+                {product.description}
+            </p>
         </div>
     </article>
   )
