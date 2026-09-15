@@ -23,3 +23,58 @@ Build like a real-world developer, not like a tutorial follower.
 - ⚡ Component-driven React architecture
 - 🎨 Responsive UI built with Tailwind CSS
 - 🔗 Dynamic routing using React Router
+
+## 🛠️ Tech Stack
+### Frontend
+. React.js — Component-based UI development
+. Tailwind CSS — Responsive and utility-first styling
+. Redux Toolkit — Global state management
+. React Redux — Connecting Redux with React
+. React Router — Client-side routing
+. JavaScript (ES6+) — Application logic
+### Development Tools
+. Vite — Development server and build tool
+. Git — Version control
+. GitHub — Repository and project management
+## 📂 Project Structure
+EcoNest/
+├── public/
+│   └── assets/
+│       ├── images/
+│       │   └── products/
+│       └── logos/
+│
+├── src/
+│   ├── app/
+│   │   └── store.js
+│   │
+│   ├── components/
+│   │   ├── layout/
+│   │   ├── common/
+│   │   ├── product/
+│   │   └── cart/
+│   │
+│   ├── features/
+│   │   └── cart/
+│   │       └── cartSlice.js
+│   │
+│   ├── layouts/
+│   │   └── MainLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Products.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── Cart.jsx
+│   │   └── Contact.jsx
+│   │
+│   ├── data/
+│   │   └── products.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── package.json
+└── README.md
