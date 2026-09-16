@@ -78,3 +78,52 @@ EcoNest/
 │
 ├── package.json
 └── README.md
+
+## 🧠 Application Architecture
+
+EcoNest follows a component-driven and feature-oriented architecture.
+
+The application separates responsibilities between:
+
+- Pages — Handle route-level views
+- Components — Provide reusable UI elements
+- Features — Contain application-specific state logic
+- Redux Store — Manages centralized global state
+- Data Layer — Provides structured product information
+- Layouts — Manage common application structure such as Navbar, Footer, and page content
+
+This structure makes the application easier to maintain and allows new functionality to be added without heavily modifying existing components.
+
+## 🛒 Cart State Management
+
+The shopping cart is managed using Redux Toolkit.
+
+The cart flow works as follows:
+
+User
+  ↓
+Product Details
+  ↓
+Add to Cart
+  ↓
+Redux Action
+  ↓
+cartSlice
+  ↓
+Redux Store
+  ↓
+Cart Components
+  ↓
+Updated UI
+
+Cart functionality includes:
+
+- Adding products to the cart
+- Increasing product quantity
+- Decreasing product quantity
+- Removing products
+- Clearing the cart
+- Calculating cart totals
+- Persisting cart data using Local Storage
+
+Cart persistence allows the user's cart to remain available even after refreshing the page.
