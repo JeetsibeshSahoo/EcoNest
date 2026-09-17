@@ -127,3 +127,28 @@ Cart functionality includes:
 - Persisting cart data using Local Storage
 
 Cart persistence allows the user's cart to remain available even after refreshing the page.
+
+## 🎨 UI & Responsive Design
+
+The interface is designed using Tailwind CSS with a focus on:
+
+- Mobile-first responsive design
+- Consistent spacing and typography
+- Reusable UI patterns
+- Clear visual hierarchy
+- Accessible interactive elements
+- Responsive product layouts
+- Responsive cart experience
+- Consistent design across pages
+
+The application is designed to provide a consistent experience across desktop, tablet, and mobile devices.
+
+## 📦 Example Products
+
+EcoNest currently includes sustainable products such as:
+
+- 🎋 Bamboo Storage Box
+- 👜 Organic Cotton Tote
+- 💧 Reusable Water Bottle
+
+The product data structure is designed so that additional products and categories can easily be added later.
