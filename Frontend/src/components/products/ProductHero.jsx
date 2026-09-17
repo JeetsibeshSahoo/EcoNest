@@ -1,16 +1,21 @@
-import React from 'react'
 import Container from '../common/Container'
 
 function ProductHero() {
   return (
-    <section className='bg-[#F7F6F1] py-20 sm:py-24 lg:py-28'>
+    <section 
+    aria-labelledby='products-page-title'
+    className='bg-[#F7F6F1] py-20 sm:py-24 lg:py-28'
+    >
         <Container>
             <div className='mx-auto max-w-3xl text-center'>
                 <p className='mb-5 text-sm font-medium uppercase tracking-[0.2em] text-[#687D73]'>
                     Our collection
                 </p>
 
-                <h1 className='text-4xl font-semibold tracking-tight text-[#173F35] sm:text-5xl'>
+                <h1 
+                id='products-page-title'
+                className='text-4xl font-semibold tracking-tight text-[#173F35] sm:text-5xl'
+                >
                     Thoughtful products for everyday living.
                 </h1>
 
