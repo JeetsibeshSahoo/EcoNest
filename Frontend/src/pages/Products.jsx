@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ProductHero from '../components/products/ProductHero'
 import Container from '../components/common/Container'
 import CategoryFilter from '../components/products/CategoryFilter'
@@ -34,18 +34,7 @@ function Products() {
             </p>
           </div>
 
-          {filteredProducts.length > 0 ? (
-            <ProductGrid products={filteredProducts} />
-          ) : (
-            <div className='py-20 text-center'>
-              <h2 className='text-xl font-semibold text-[#173F35]'>
-                No products found
-              </h2>
-              <p className='mt-2 text-gray-500'>
-                Try selecting a different category.
-              </p>
-            </div>
-          )}
+          <ProductGrid products={filteredProducts} />
 
         </Container>
       </section>
