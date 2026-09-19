@@ -7,6 +7,7 @@ function Button({
     className = "",
     onClick,
     disabled = false,
+    type = "button"
 }) {
 
     const baseStyles = "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2";
@@ -41,7 +42,7 @@ function Button({
 
   return (
     <button 
-    type='button' 
+    type={type} 
     className={`${styles} disabled:cursor-not-allowed disabled:opacity-50`}
     onClick={onClick}
     disabled={disabled}
