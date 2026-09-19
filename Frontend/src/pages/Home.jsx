@@ -1,4 +1,3 @@
-import React from 'react'
 import Hero from '../components/home/Hero';
 import BrandIntroduction from '../components/home/BrandIntroduction';
 import CategorySection from '../components/home/CategorySection';

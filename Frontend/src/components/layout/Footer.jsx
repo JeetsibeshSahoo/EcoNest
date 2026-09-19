@@ -1,15 +1,18 @@
 import { NavLink } from "react-router-dom"
-
+import Container from "../common/Container"
 import { navigationItems } from "../../data/navigation"
 
 function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-[#F7F6F1]">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
-
+      <Container className="py-12 lg:py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div className="max-w-sm">
-            <NavLink to="/" className="inline-block">
+            <NavLink
+              to="/"
+              className="inline-block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+              aria-label="EcoNest home"
+            >
               <img
                 src="/assets/logos/logo.png"
                 alt="EcoNest"
@@ -36,7 +39,7 @@ function Footer() {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  className="w-fit text-sm text-gray-600 transition-colors hover:text-[#173F35]"
+                  className="w-fit rounded-sm text-sm text-gray-600 transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
                 >
                   {item.name}
                 </NavLink>
@@ -52,17 +55,14 @@ function Footer() {
             <div className="mt-5 space-y-3 text-sm text-gray-600">
               <a
                 href="mailto:hello@econest.com"
-                className="block transition-colors hover:text-[#173F35]"
+                className="block w-fit rounded-sm transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
               >
                 hello@econest.com
               </a>
 
-              <p>
-                Bhubaneswar, Odisha
-              </p>
+              <p>Bhubaneswar, Odisha</p>
             </div>
           </div>
-
         </div>
 
         <div className="mt-12 border-t border-gray-200 pt-6">
@@ -70,8 +70,7 @@ function Footer() {
             © {new Date().getFullYear()} EcoNest. All rights reserved.
           </p>
         </div>
-
-      </div>
+      </Container>
     </footer>
   )
 }
