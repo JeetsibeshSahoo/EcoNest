@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import About from '../pages/About'
@@ -15,7 +14,10 @@ function AppRoutes() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/products' element={<Products />} />
-          <Route path='/products/:slug' element={<ProductDetails />} />
+          <Route 
+            path='/products/:slug' 
+            element={<ProductDetails />} 
+          />
           <Route path='/cart' element={<Cart />} />
           <Route path='/contact' element={<Contact />} />
         </Route>

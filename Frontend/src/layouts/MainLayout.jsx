@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../components/layout/Navbar'
 import { Outlet } from 'react-router-dom'
 import Footer from '../components/layout/Footer'
@@ -7,9 +6,9 @@ function MainLayout() {
   return (
     <div className='flex min-h-screen flex-col'>
         <Navbar />
-        <main className='flex-1'>
+        <div className='flex-1'>
             <Outlet />
-        </main>
+        </div>
         <Footer />
     </div>
   )
