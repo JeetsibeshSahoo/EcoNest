@@ -10,7 +10,7 @@ export const store = configureStore({
   },
 })
 
-store.subscribe(() => {
+const persistCart = () => {
   try {
     const cartItems = store.getState().cart.items
 
@@ -19,6 +19,11 @@ store.subscribe(() => {
       JSON.stringify(cartItems)
     )
   } catch (error) {
-    console.error("Failed to save cart to localStorage:", error)
+    console.error(
+      "Failed to save cart to localStorage:",
+      error
+    )
   }
-})
+}
+
+store.subscribe(persistCart)
