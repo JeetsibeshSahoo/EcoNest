@@ -152,3 +152,43 @@ EcoNest currently includes sustainable products such as:
 - 💧 Reusable Water Bottle
 
 The product data structure is designed so that additional products and categories can easily be added later.
+
+## 🔄 Product Flow
+Products Page
+      ↓
+Browse Products
+      ↓
+Filter by Category
+      ↓
+Select Product
+      ↓
+Product Details
+      ↓
+Add to Cart
+      ↓
+Cart
+      ↓
+Update Quantity / Remove
+      ↓
+Cart Summary
+## 🔮 Future Improvements
+
+EcoNest is currently focused on the frontend, but the architecture is designed with future full-stack integration in mind.
+
+Planned improvements include:
+
+- 🔐 User authentication and authorization
+- 👤 User profile management
+- 🛍️ Backend product management
+- 🗄️ MongoDB database integration
+- 🚀 Node.js + Express backend
+- 💳 Payment gateway integration
+- 📦 Order management
+- 📋 Order history
+- ❤️ Wishlist functionality
+- 🔍 Advanced product search
+- 📊 Admin dashboard
+- ⭐ Product reviews and ratings
+- 🤖 AI-powered product recommendations
+- 💬 AI shopping assistant
+- 📈 Personalized shopping experience
