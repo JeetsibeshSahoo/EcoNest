@@ -1,21 +1,27 @@
-import React from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { selectCartSubtotal } from './cartSelectors'
-import { clearCart } from './cartSlice';
+
+import Button from "../../components/common/Button"
+import { clearCart } from "./cartSlice"
+import { selectCartSubtotal } from "./cartSelectors"
 
 function CartSummary() {
+  const dispatch = useDispatch()
 
-  const dispatch = useDispatch();
-
-  const subtotal = useSelector(selectCartSubtotal);
+  const subtotal = useSelector(selectCartSubtotal)
 
   const handleClearCart = () => {
-    dispatch(clearCart());
+    dispatch(clearCart())
   }
 
   return (
-    <aside className="rounded-2xl bg-gray-50 p-6">
-      <h2 className="text-xl font-semibold text-[#173F35]">
+    <aside
+      aria-labelledby="cart-summary-title"
+      className="rounded-2xl bg-gray-50 p-6"
+    >
+      <h2
+        id="cart-summary-title"
+        className="text-xl font-semibold text-[#173F35]"
+      >
         Order Summary
       </h2>
 
@@ -53,19 +59,19 @@ function CartSummary() {
         </div>
       </div>
 
-      <button
+      <Button
         type="button"
-        className="mt-6 w-full rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+        className="mt-6 w-full"
       >
         Proceed to Checkout
-      </button>
+      </Button>
 
-      <button 
-      type="button" 
-      onClick={handleClearCart} 
-      className="mt-3 w-full rounded-full border border-gray-300 px-6 py-3.5 text-sm font-medium text-gray-600 transition-colors hover:border-red-200 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2" 
-      > 
-        Clear Cart 
+      <button
+        type="button"
+        onClick={handleClearCart}
+        className="mt-3 w-full rounded-full border border-gray-300 px-6 py-3.5 text-sm font-medium text-gray-600 transition-colors hover:border-red-200 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+      >
+        Clear Cart
       </button>
     </aside>
   )
