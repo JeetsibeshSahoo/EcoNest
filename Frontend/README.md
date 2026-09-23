@@ -192,3 +192,32 @@ Planned improvements include:
 - 🤖 AI-powered product recommendations
 - 💬 AI shopping assistant
 - 📈 Personalized shopping experience
+
+
+## 🎯 Learning Objectives
+
+EcoNest was developed to gain practical experience with real-world frontend development concepts, including:
+
+- Building scalable React applications
+- Designing reusable components
+- Managing global application state
+- Working with dynamic routes
+- Creating responsive interfaces
+- Structuring maintainable projects
+- Managing persistent client-side data
+- Separating UI and application logic
+- Designing applications for future backend integration
+- Following production-oriented development practices
+## 💡 Why EcoNest?
+
+EcoNest is more than a simple e-commerce UI project.
+
+It is a practical project for understanding how modern web applications are structured before introducing backend services, authentication, databases, payments, and AI functionality.
+
+The project is being developed incrementally with the goal of eventually transforming EcoNest into a full-stack, AI-powered e-commerce platform.
+
+## 👨‍💻 Developer
+
+Built with ❤️ using React, Tailwind CSS, Redux Toolkit, React Router, and modern JavaScript.
+
+EcoNest — Building a cleaner digital shopping experience. 🌱
