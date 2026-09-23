@@ -1,8 +1,50 @@
+import { useState } from "react"
 import Container from "../components/common/Container"
 import SectionTitle from "../components/common/SectionTitle"
 import Button from "../components/common/Button"
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+
+    setFormData((previousData) => ({
+      ...previousData,
+      [name]: value,
+    }))
+
+    if (isSubmitted) {
+      setIsSubmitted(false)
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    setIsSubmitting(true)
+
+    setTimeout(() => {
+      console.log("Contact form submitted:", formData)
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      })
+
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    }, 800)
+  }
+
   return (
     <main>
       <section className="bg-[#F7F6F1] py-20 sm:py-24 lg:py-28">
@@ -71,7 +113,10 @@ function Contact() {
             </div>
 
             <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-              <form className="space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -84,10 +129,13 @@ function Contact() {
                     id="name"
                     name="name"
                     type="text"
+                    value={formData.name}
+                    onChange={handleChange}
                     autoComplete="name"
                     required
+                    disabled={isSubmitting}
                     placeholder="Your name"
-                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20"
+                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
@@ -103,10 +151,13 @@ function Contact() {
                     id="email"
                     name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     autoComplete="email"
                     required
+                    disabled={isSubmitting}
                     placeholder="you@example.com"
-                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20"
+                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
@@ -121,16 +172,36 @@ function Contact() {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows="6"
                     required
+                    disabled={isSubmitting}
                     placeholder="How can we help?"
-                    className="mt-2 w-full resize-y rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20"
+                    className="mt-2 w-full resize-y rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
-                <Button type="submit" className="w-full sm:w-auto">
-                  Send Message
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto"
+                >
+                  {isSubmitting
+                    ? "Sending..."
+                    : "Send Message"}
                 </Button>
+
+                {isSubmitted && (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className="rounded-xl bg-[#F7F6F1] px-4 py-3 text-sm font-medium text-[#173F35]"
+                  >
+                    Thanks! Your message has been received. We'll
+                    get back to you soon.
+                  </p>
+                )}
               </form>
             </div>
           </div>
