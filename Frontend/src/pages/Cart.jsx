@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-
 import Container from "../components/common/Container"
 import CartItem from "../features/cart/CartItem"
 import CartSummary from "../features/cart/CartSummary"
@@ -35,12 +34,17 @@ function Cart() {
               </h1>
 
               <p className="mt-3 max-w-xl text-base leading-7 text-gray-600">
-                Review your selected products before continuing to checkout.
+                Review your selected products before continuing to
+                checkout.
               </p>
             </div>
 
-            <p className="text-sm font-medium text-gray-500">
-              {cartItemCount} {cartItemCount === 1 ? "item" : "items"}
+            <p
+              className="text-sm font-medium text-gray-500"
+              aria-live="polite"
+            >
+              {cartItemCount}{" "}
+              {cartItemCount === 1 ? "item" : "items"}
             </p>
           </div>
         </header>
@@ -68,7 +72,6 @@ function Cart() {
               ))}
             </div>
           </section>
-
           <div className="lg:sticky lg:top-6">
             <CartSummary />
           </div>
