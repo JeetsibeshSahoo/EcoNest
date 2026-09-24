@@ -2,6 +2,7 @@ import { useState } from "react"
 import Container from "../components/common/Container"
 import SectionTitle from "../components/common/SectionTitle"
 import Button from "../components/common/Button"
+import { submitContactForm } from "../services/contactService"
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -11,7 +12,10 @@ function Contact() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState({
+    type: "",
+    message: "",
+  })
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -21,18 +25,32 @@ function Contact() {
       [name]: value,
     }))
 
-    if (isSubmitted) {
-      setIsSubmitted(false)
+    if (submitStatus.message) {
+      setSubmitStatus({
+        type: "",
+        message: "",
+      })
     }
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     setIsSubmitting(true)
 
-    setTimeout(() => {
-      console.log("Contact form submitted:", formData)
+    setSubmitStatus({
+      type: "",
+      message: "",
+    })
+
+    try {
+      const response = await submitContactForm(formData)
+
+      if (!response.success) {
+        throw new Error(
+          response.message || "Unable to submit the form."
+        )
+      }
 
       setFormData({
         name: "",
@@ -40,9 +58,21 @@ function Contact() {
         message: "",
       })
 
+      setSubmitStatus({
+        type: "success",
+        message: response.message,
+      })
+    } catch (error) {
+      console.error("Contact form submission failed:", error)
+
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Something went wrong while sending your message. Please try again.",
+      })
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 800)
+    }
   }
 
   return (
@@ -192,14 +222,17 @@ function Contact() {
                     : "Send Message"}
                 </Button>
 
-                {isSubmitted && (
+                {submitStatus.message && (
                   <p
                     role="status"
                     aria-live="polite"
-                    className="rounded-xl bg-[#F7F6F1] px-4 py-3 text-sm font-medium text-[#173F35]"
+                    className={`rounded-xl px-4 py-3 text-sm font-medium ${
+                      submitStatus.type === "success"
+                        ? "bg-[#F7F6F1] text-[#173F35]"
+                        : "bg-red-50 text-red-700"
+                    }`}
                   >
-                    Thanks! Your message has been received. We'll
-                    get back to you soon.
+                    {submitStatus.message}
                   </p>
                 )}
               </form>
