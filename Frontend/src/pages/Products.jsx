@@ -1,22 +1,58 @@
-import { useMemo, useState } from 'react'
-import ProductHero from '../components/products/ProductHero'
-import Container from '../components/common/Container'
-import CategoryFilter from '../components/products/CategoryFilter'
-import ProductGrid from '../components/products/ProductGrid'
-import { products } from '../data/products'
-import ProductControls from '../components/products/ProductControls'
+import { useMemo } from "react"
+import { useSearchParams } from "react-router-dom"
+import Container from "../components/common/Container"
+import ProductHero from "../components/products/ProductHero"
+import ProductControls from "../components/products/ProductControls"
+import ProductGrid from "../components/products/ProductGrid"
+import { categories } from "../data/categories"
+import { products } from "../data/products"
+
+const validSortOptions = [
+  "default",
+  "price-low",
+  "price-high",
+  "name-asc",
+  "name-desc",
+]
 
 function Products() {
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortOption, setSortOption] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const searchQuery = searchParams.get("search") || ""
+  const requestedCategory = searchParams.get("category") || "All"
+  const requestedSort = searchParams.get("sort") || "default"
+
+  const activeCategory = categories.some(
+    (category) => category.name === requestedCategory
+  )
+    ? requestedCategory
+    : "All"
+
+  const sortOption = validSortOptions.includes(requestedSort)
+    ? requestedSort
+    : "default"
+
+  const updateSearchParams = (updates) => {
+    const nextParams = new URLSearchParams(searchParams)
+
+    Object.entries(updates).forEach(([key, value]) => {
+      if (!value || value === "All" || value === "default") {
+        nextParams.delete(key)
+        return
+      }
+
+      nextParams.set(key, value)
+    })
+
+    setSearchParams(nextParams)
+  }
 
   const filteredProducts = useMemo(() => {
-    const normalizedSearchQuery = searchQuery.trim().toLowerCase();
+    const normalizedSearchQuery =
+      searchQuery.trim().toLowerCase()
 
     const result = products.filter((product) => {
-      const matchesSearch = 
+      const matchesSearch =
         normalizedSearchQuery === "" ||
         product.name
           .toLowerCase()
@@ -24,14 +60,16 @@ function Products() {
         product.description
           .toLowerCase()
           .includes(normalizedSearchQuery) ||
-        product.category 
-          .toLowerCase() 
+        product.category
+          .toLowerCase()
           .includes(normalizedSearchQuery)
 
-      const matchesCategory = activeCategory === "All" || product.category === activeCategory
+      const matchesCategory =
+        activeCategory === "All" ||
+        product.category === activeCategory
 
       return matchesSearch && matchesCategory
-    });
+    })
 
     return [...result].sort((a, b) => {
       switch (sortOption) {
@@ -51,39 +89,59 @@ function Products() {
           return 0
       }
     })
-  }, [searchQuery, activeCategory, sortOption]);
+  }, [searchQuery, activeCategory, sortOption])
+
+  const handleSearchChange = (value) => {
+    updateSearchParams({
+      search: value,
+    })
+  }
+
+  const handleCategoryChange = (value) => {
+    updateSearchParams({
+      category: value,
+    })
+  }
+
+  const handleSortChange = (value) => {
+    updateSearchParams({
+      sort: value,
+    })
+  }
 
   return (
     <>
       <ProductHero />
 
-      <section className='py-16 sm:py-20'>
+      <section className="py-16 sm:py-20">
         <Container>
-          <div className='mb-10'>
-            <ProductControls 
+          <div className="mb-10">
+            <ProductControls
               searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
+              onSearchChange={handleSearchChange}
               activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}sortOption={sortOption}
-              onSortChange={setSortOption}
+              onCategoryChange={handleCategoryChange}
+              sortOption={sortOption}
+              onSortChange={handleSortChange}
             />
           </div>
 
-          <div className='mb-8 flex items-center justify-between'>
-            <p 
-              className='text-sm text-gray-500'
-              aria-live='polite'
+          <div className="mb-8 flex items-center justify-between">
+            <p
+              className="text-sm text-gray-500"
+              aria-live="polite"
             >
               Showing{" "}
-              <span className='font-medium text-[#173F35]'>
+              <span className="font-medium text-[#173F35]">
                 {filteredProducts.length}
               </span>{" "}
-              {filteredProducts.length === 1 ? "product" : "products"}
+              {filteredProducts.length === 1
+                ? "product"
+                : "products"}
             </p>
           </div>
 
           <ProductGrid products={filteredProducts} />
-
         </Container>
       </section>
     </>
