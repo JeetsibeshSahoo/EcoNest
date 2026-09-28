@@ -126,18 +126,62 @@ function Products() {
             />
           </div>
 
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8">
             <p
               className="text-sm text-gray-500"
               aria-live="polite"
             >
-              Showing{" "}
-              <span className="font-medium text-[#173F35]">
-                {filteredProducts.length}
-              </span>{" "}
-              {filteredProducts.length === 1
-                ? "product"
-                : "products"}
+              {filteredProducts.length === 0 ? (
+                <>
+                  No products found
+                  {searchQuery.trim() && (
+                    <>
+                      {" "}
+                      for{" "}
+                      <span className="font-medium text-[#173F35]">
+                        "{searchQuery.trim()}"
+                      </span>
+                    </>
+                  )}
+                  {activeCategory !== "All" && (
+                    <>
+                      {" "}
+                      in{" "}
+                      <span className="font-medium text-[#173F35]">
+                        {activeCategory}
+                      </span>
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  Showing{" "}
+                  <span className="font-medium text-[#173F35]">
+                    {filteredProducts.length}
+                  </span>{" "}
+                  {filteredProducts.length === 1
+                    ? "product"
+                    : "products"}
+                  {searchQuery.trim() && (
+                    <>
+                      {" "}
+                      for{" "}
+                      <span className="font-medium text-[#173F35]">
+                        "{searchQuery.trim()}"
+                      </span>
+                    </>
+                  )}
+                  {activeCategory !== "All" && (
+                    <>
+                      {" "}
+                      in{" "}
+                      <span className="font-medium text-[#173F35]">
+                        {activeCategory}
+                      </span>
+                    </>
+                  )}
+                </>
+              )}
             </p>
           </div>
 
