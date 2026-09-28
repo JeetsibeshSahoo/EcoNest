@@ -1,16 +1,27 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowLeft, Minus, Plus } from "lucide-react"
 import { useDispatch } from "react-redux"
-
 import Container from "../common/Container"
+import RelatedProducts from "./RelatedProducts"
 import { addToCart } from "../../features/cart/cartSlice"
+import { products } from "../../data/products"
 
 function ProductDetailsContent({ product }) {
   const [quantity, setQuantity] = useState(1)
   const [isAdded, setIsAdded] = useState(false)
 
   const dispatch = useDispatch()
+
+  const relatedProducts = useMemo(() => {
+    return products
+      .filter(
+        (item) =>
+          item.category === product.category &&
+          item.id !== product.id
+      )
+      .slice(0, 3)
+  }, [product])
 
   useEffect(() => {
     if (!isAdded) {
@@ -63,7 +74,6 @@ function ProductDetailsContent({ product }) {
           </Link>
 
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-            {/* Product Image */}
             <div className="overflow-hidden rounded-3xl bg-gray-100">
               <img
                 src={product.image}
@@ -72,7 +82,6 @@ function ProductDetailsContent({ product }) {
               />
             </div>
 
-            {/* Product Information */}
             <div className="flex flex-col justify-center">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
                 {product.category}
@@ -90,7 +99,6 @@ function ProductDetailsContent({ product }) {
                 {product.description}
               </p>
 
-              {/* Quantity */}
               <div className="mt-8">
                 <p
                   id="product-quantity-label"
@@ -136,7 +144,6 @@ function ProductDetailsContent({ product }) {
                 </div>
               </div>
 
-              {/* Add to Cart */}
               <div className="mt-6">
                 <button
                   type="button"
@@ -157,6 +164,8 @@ function ProductDetailsContent({ product }) {
           </div>
         </Container>
       </section>
+
+      <RelatedProducts products={relatedProducts} />
     </main>
   )
 }
