@@ -9,8 +9,11 @@ import {
   selectCartItemCount,
   selectIsCartEmpty,
 } from "../features/cart/cartSelectors"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function Cart() {
+
+  useDocumentTitle("Cart | Econest");
   const cartItems = useSelector(selectCartItems)
   const cartItemCount = useSelector(selectCartItemCount)
   const isCartEmpty = useSelector(selectIsCartEmpty)

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, Home } from "lucide-react"
 import Container from "../components/common/Container"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function NotFound() {
+
+  useDocumentTitle("Page not Found | Econest");
+
   return (
     <main className="bg-white">
       <Container className="flex min-h-[70vh] items-center justify-center py-16">

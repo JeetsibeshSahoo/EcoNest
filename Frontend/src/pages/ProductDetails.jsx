@@ -2,13 +2,20 @@ import { Link, useParams } from "react-router-dom"
 import Container from "../components/common/Container"
 import ProductDetailsContent from "../components/products/ProductDetailsContent"
 import { products } from "../data/products"
+import useDocumentTitle from "../hooks/useDocumentTitle"
+
 
 function ProductDetails() {
   const { slug } = useParams()
 
   const product = products.find(
     (item) => item.slug === slug
-  )
+  );
+  
+  
+  const pageTitle = product ? `${product.name} | Econest` : "Product Not Found | Econest";
+
+  useDocumentTitle(pageTitle);
 
   if (!product) {
     return (
@@ -40,7 +47,7 @@ function ProductDetails() {
     )
   }
 
-  return <ProductDetailsContent product={product} />
+  return <ProductDetailsContent key={product.id} product={product} />
 }
 
 export default ProductDetails

@@ -3,8 +3,11 @@ import Container from "../components/common/Container"
 import SectionTitle from "../components/common/SectionTitle"
 import Button from "../components/common/Button"
 import { submitContactForm } from "../services/contactService"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function Contact() {
+
+  useDocumentTitle("Contact | Econest");
   const [formData, setFormData] = useState({
     name: "",
     email: "",

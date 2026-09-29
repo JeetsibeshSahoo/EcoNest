@@ -6,6 +6,7 @@ import ProductControls from "../components/products/ProductControls"
 import ProductGrid from "../components/products/ProductGrid"
 import { categories } from "../data/categories"
 import { products } from "../data/products"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 const validSortOptions = [
   "default",
@@ -16,6 +17,8 @@ const validSortOptions = [
 ]
 
 function Products() {
+
+  useDocumentTitle("Products | Econest");
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchQuery = searchParams.get("search") || ""

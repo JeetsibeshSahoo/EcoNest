@@ -5,8 +5,12 @@ import FeaturedProducts from '../components/home/FeaturedProducts';
 import WhyEcoNest from '../components/home/WhyEcoNest';
 import StoryPreview from '../components/home/StoryPreview';
 import HomeCTA from '../components/home/HomeCTA';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 function Home() {
+
+  useDocumentTitle("Econest | Sustainable Living");
+
   return (
     <main>
       <Hero />

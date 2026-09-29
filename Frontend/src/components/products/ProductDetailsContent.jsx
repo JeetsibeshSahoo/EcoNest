@@ -37,6 +37,7 @@ function ProductDetailsContent({ product }) {
     }
   }, [isAdded])
 
+
   const decreaseQuantity = () => {
     setQuantity((currentQuantity) =>
       Math.max(1, currentQuantity - 1)
