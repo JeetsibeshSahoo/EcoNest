@@ -38,9 +38,13 @@ class ErrorBoundary extends Component {
           <Container className="flex min-h-[70vh] items-center justify-center py-16">
             <section
               aria-labelledby="error-title"
+              aria-describedby="error-description"
               className="w-full max-w-xl text-center"
             >
-              <p className="text-7xl font-semibold tracking-tight text-[#8FAF9F] sm:text-8xl">
+              <p 
+                className="text-7xl font-semibold tracking-tight text-[#8FAF9F] sm:text-8xl"
+                aria-hidden="true"
+              >
                 Oops
               </p>
 
@@ -51,7 +55,10 @@ class ErrorBoundary extends Component {
                 Something went wrong
               </h1>
 
-              <p className="mx-auto mt-4 max-w-md text-base leading-7 text-gray-500">
+              <p 
+                id="error-description"
+                className="mx-auto mt-4 max-w-md text-base leading-7 text-gray-500"
+              >
                 We ran into an unexpected problem while loading this
                 page. Please try again or return to the EcoNest
                 homepage.

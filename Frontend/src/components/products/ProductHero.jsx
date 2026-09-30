@@ -14,7 +14,7 @@ function ProductHero() {
 
                 <h1 
                 id='products-page-title'
-                className='text-4xl font-semibold tracking-tight text-[#173F35] sm:text-5xl'
+                className='text-4xl font-semibold leading-tight tracking-tight text-[#173F35] sm:text-5xl'
                 >
                     Thoughtful products for everyday living.
                 </h1>

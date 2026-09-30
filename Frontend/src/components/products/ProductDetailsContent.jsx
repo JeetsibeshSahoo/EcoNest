@@ -8,10 +8,11 @@ import { addToCart } from "../../features/cart/cartSlice"
 import { products } from "../../data/products"
 
 function ProductDetailsContent({ product }) {
-  const [quantity, setQuantity] = useState(1)
-  const [isAdded, setIsAdded] = useState(false)
 
-  const dispatch = useDispatch()
+  const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
+
+  const dispatch = useDispatch();
 
   const relatedProducts = useMemo(() => {
     return products
@@ -21,7 +22,7 @@ function ProductDetailsContent({ product }) {
           item.id !== product.id
       )
       .slice(0, 3)
-  }, [product])
+  }, [product]);
 
   useEffect(() => {
     if (!isAdded) {
@@ -35,7 +36,7 @@ function ProductDetailsContent({ product }) {
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [isAdded])
+  }, [isAdded]);
 
 
   const decreaseQuantity = () => {
@@ -79,6 +80,7 @@ function ProductDetailsContent({ product }) {
               <img
                 src={product.image}
                 alt={product.name}
+                decoding="async"
                 className="aspect-square h-full w-full object-cover"
               />
             </div>
@@ -127,6 +129,7 @@ function ProductDetailsContent({ product }) {
                   <span
                     className="flex h-11 min-w-12 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]"
                     aria-live="polite"
+                    aria-atomic="true"
                   >
                     {quantity}
                   </span>
@@ -149,7 +152,11 @@ function ProductDetailsContent({ product }) {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  aria-live="polite"
+                  aria-label={
+                    isAdded
+                      ? `${product.name} added to cart`
+                      : `Add ${product.name} to cart`
+                  }
                   className={`w-full rounded-full px-6 py-3.5 text-sm font-medium text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:w-auto ${
                     isAdded
                       ? "bg-[#2F6B5B] focus-visible:ring-[#2F6B5B]"
@@ -160,6 +167,14 @@ function ProductDetailsContent({ product }) {
                     ? "Added to cart ✓"
                     : "Add to cart"}
                 </button>
+
+                <span>
+                  {
+                    isAdded
+                      ? `${product.name} added to cart`
+                      : ""
+                  }
+                </span>
               </div>
             </div>
           </div>

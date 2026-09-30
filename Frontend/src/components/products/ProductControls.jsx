@@ -34,6 +34,7 @@ function ProductControls({
               onSearchChange(event.target.value)
             }
             placeholder="Search products..."
+            aria-label="Search products"
             className="w-full rounded-full border border-gray-300 bg-white py-3 pl-11 pr-4 text-sm text-gray-800 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20"
           />
         </div>

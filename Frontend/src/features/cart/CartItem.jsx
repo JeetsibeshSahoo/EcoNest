@@ -9,9 +9,10 @@ import {
 } from "./cartSlice"
 
 function CartItem({ item }) {
-  const dispatch = useDispatch()
+  
+  const dispatch = useDispatch();
 
-  const itemTotal = item.price * item.quantity
+  const itemTotal = item.price * item.quantity;
 
   const handleIncrease = () => {
     dispatch(increaseQuantity(item.id))
@@ -35,6 +36,8 @@ function CartItem({ item }) {
         <img
           src={item.image}
           alt={item.name}
+          loading="lazy"
+          decoding="async"
           className="h-24 w-24 rounded-xl object-cover sm:h-32 sm:w-32"
         />
       </Link>
@@ -54,34 +57,50 @@ function CartItem({ item }) {
         </div>
 
         <div className="mt-4 flex items-center justify-between gap-4">
-          <div
-            className="inline-flex items-center overflow-hidden rounded-full border border-gray-300"
-            aria-label={`Quantity controls for ${item.name}`}
-          >
-            <button
-              type="button"
-              onClick={handleDecrease}
-              aria-label={`Decrease quantity of ${item.name}`}
-              className="flex h-9 w-9 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
-            >
-              <Minus size={14} aria-hidden="true" />
-            </button>
-
+          <div>
             <span
-              className="flex h-9 min-w-10 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]"
-              aria-live="polite"
+              id={`quantity-label-${item.id}`}
+              className="sr-only"
             >
-              {item.quantity}
+              Quantity for {item.name}
             </span>
 
-            <button
-              type="button"
-              onClick={handleIncrease}
-              aria-label={`Increase quantity of ${item.name}`}
-              className="flex h-9 w-9 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
+            <div
+              className="inline-flex items-center overflow-hidden rounded-full border border-gray-300"
+              aria-labelledby={`quantity-label-${item.id}`}
             >
-              <Plus size={14} aria-hidden="true" />
-            </button>
+              <button
+                type="button"
+                onClick={handleDecrease}
+                aria-label={`Decrease quantity of ${item.name}`}
+                className="flex h-9 w-9 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
+              >
+                <Minus
+                  size={14}
+                  aria-hidden="true"
+                />
+              </button>
+
+              <span
+                className="flex h-9 min-w-10 items-center justify-center border-x border-gray-300 text-sm font-medium text-[#173F35]"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {item.quantity}
+              </span>
+
+              <button
+                type="button"
+                onClick={handleIncrease}
+                aria-label={`Increase quantity of ${item.name}`}
+                className="flex h-9 w-9 items-center justify-center text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#173F35]"
+              >
+                <Plus
+                  size={14}
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
           </div>
 
           <div className="text-right">
@@ -95,7 +114,11 @@ function CartItem({ item }) {
               aria-label={`Remove ${item.name} from cart`}
               className="mt-1 inline-flex items-center gap-1 rounded-sm text-xs text-gray-400 transition-colors hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
             >
-              <Trash2 size={14} aria-hidden="true" />
+              <Trash2
+                size={14}
+                aria-hidden="true"
+              />
+
               Remove
             </button>
           </div>

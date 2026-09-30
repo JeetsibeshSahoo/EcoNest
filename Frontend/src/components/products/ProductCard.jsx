@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-
 import { addToCart } from "../../features/cart/cartSlice"
 
 function ProductCard({ product }) {
@@ -19,12 +18,12 @@ function ProductCard({ product }) {
 
     const timeoutId = setTimeout(() => {
       setIsAdded(false)
-    }, 1500)
+    }, 1500);
 
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [isAdded])
+  }, [isAdded]);
 
   const handleAddToCart = () => {
     dispatch(
@@ -49,6 +48,7 @@ function ProductCard({ product }) {
             src={product.image}
             alt={product.name}
             loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
@@ -89,15 +89,30 @@ function ProductCard({ product }) {
         <button
           type="button"
           onClick={handleAddToCart}
-          aria-live="polite"
           className={`mt-4 w-full rounded-full px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
             isAdded
               ? "bg-[#2F6B5B] text-white focus-visible:ring-[#2F6B5B]"
               : "bg-[#173F35] text-white hover:bg-[#122F29] focus-visible:ring-[#173F35]"
           }`}
+          aria-label={
+            isAdded
+              ? `${product.name} added to cart`
+              : `Add ${product.name} to cart`
+          }
         >
           {isAdded ? "Added to cart ✓" : "Add to cart"}
         </button>
+
+        <span
+          className="sr-only"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {isAdded
+            ? `${product.name} added to cart`
+            : ""
+          }
+        </span>
       </div>
     </article>
   )

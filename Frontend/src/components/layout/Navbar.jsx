@@ -1,8 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { Menu, X, ShoppingCart } from "lucide-react"
 import { useSelector } from "react-redux"
-
 import Container from "../common/Container"
 import { navigationItems } from "../../data/navigation"
 import { selectCartItemCount } from "../../features/cart/cartSelectors"
@@ -15,6 +14,24 @@ function Navbar() {
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeMenu()
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [isMenuOpen]);
 
   const getNavLinkClasses = ({ isActive }) =>
     `rounded-sm text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2 ${
