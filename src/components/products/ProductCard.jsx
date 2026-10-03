@@ -1,0 +1,121 @@
+import { useEffect, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import { addToCart } from "../../features/cart/cartSlice"
+
+function ProductCard({ product }) {
+  const [isAdded, setIsAdded] = useState(false)
+
+  const dispatch = useDispatch()
+
+  const productUrl = `/products/${product.slug}`
+
+  useEffect(() => {
+    if (!isAdded) {
+      return
+    }
+
+    const timeoutId = setTimeout(() => {
+      setIsAdded(false)
+    }, 1500);
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [isAdded]);
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        product,
+        quantity: 1,
+      })
+    )
+
+    setIsAdded(true)
+  }
+
+  return (
+    <article className="group">
+      <Link
+        to={productUrl}
+        className="block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+        aria-label={`View ${product.name}`}
+      >
+        <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100">
+          <img
+            src={product.image}
+            alt={product.name}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+
+          <span
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#173F35] opacity-0 shadow-sm transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+            aria-hidden="true"
+          >
+            <ArrowUpRight
+              size={18}
+              aria-hidden="true"
+            />
+          </span>
+        </div>
+      </Link>
+
+      <div className="mt-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">
+          {product.category}
+        </p>
+
+        <div className="mt-1 flex items-start justify-between gap-4">
+          <Link
+            to={productUrl}
+            className="rounded-sm font-medium text-[#17201D] transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+          >
+            {product.name}
+          </Link>
+
+          <span className="shrink-0 font-semibold text-[#173F35]">
+            ₹{product.price}
+          </span>
+        </div>
+
+        <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500">
+          {product.description}
+        </p>
+
+        <button
+          type="button"
+          onClick={handleAddToCart}
+          className={`mt-4 w-full rounded-full px-4 py-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+            isAdded
+              ? "bg-[#2F6B5B] text-white focus-visible:ring-[#2F6B5B]"
+              : "bg-[#173F35] text-white hover:bg-[#122F29] focus-visible:ring-[#173F35]"
+          }`}
+          aria-label={
+            isAdded
+              ? `${product.name} added to cart`
+              : `Add ${product.name} to cart`
+          }
+        >
+          {isAdded ? "Added to cart ✓" : "Add to cart"}
+        </button>
+
+        <span
+          className="sr-only"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {isAdded
+            ? `${product.name} added to cart`
+            : ""
+          }
+        </span>
+      </div>
+    </article>
+  )
+}
+
+export default ProductCard
