@@ -1,20 +1,26 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, Home } from "lucide-react"
 import Container from "../components/common/Container"
+import Button from "../components/common/Button"
 import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function NotFound() {
-
-  useDocumentTitle("Page not Found | Econest");
+  useDocumentTitle("Page Not Found | EcoNest")
 
   return (
-    <main className="bg-white">
+    <main
+      aria-label="Page not found"
+      className="bg-white"
+    >
       <Container className="flex min-h-[70vh] items-center justify-center py-16">
         <section
           aria-labelledby="not-found-title"
           className="w-full max-w-xl text-center"
         >
-          <p className="text-7xl font-semibold tracking-tight text-[#8FAF9F] sm:text-8xl">
+          <p
+            className="text-7xl font-semibold tracking-tight text-[#8FAF9F] sm:text-8xl"
+            aria-hidden="true"
+          >
             404
           </p>
 
@@ -27,29 +33,24 @@ function NotFound() {
 
           <p className="mx-auto mt-4 max-w-md text-base leading-7 text-gray-500">
             Sorry, we couldn't find the page you're looking for.
-            It may have been moved, removed, or the URL may be incorrect.
+            It may have been moved, removed, or the URL may be
+            incorrect.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
+            <Button
               to="/"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#173F35] px-6 py-3.5 text-sm font-medium text-white transition-colors hover:bg-[#122F29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+              className="gap-2"
             >
-              <Home
-                size={16}
-                aria-hidden="true"
-              />
+              <Home size={16} aria-hidden="true" />
               Back to Home
-            </Link>
+            </Button>
 
             <Link
               to="/products"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 px-6 py-3.5 text-sm font-medium text-gray-700 transition-colors hover:border-[#173F35] hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
             >
-              <ArrowLeft
-                size={16}
-                aria-hidden="true"
-              />
+              <ArrowLeft size={16} aria-hidden="true" />
               Explore Products
             </Link>
           </div>

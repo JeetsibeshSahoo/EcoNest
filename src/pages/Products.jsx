@@ -16,20 +16,37 @@ const validSortOptions = [
   "name-desc",
 ]
 
-function Products() {
+const categoryToSlug = (categoryName) =>
+  categoryName.toLowerCase().replace(/\s+/g, "-")
 
-  useDocumentTitle("Products | Econest");
+const getCategoryByParam = (categoryParam) => {
+  if (!categoryParam) {
+    return null
+  }
+
+  const normalizedParam = categoryParam.trim().toLowerCase()
+
+  return (
+    categories.find(
+      (category) =>
+        category.name.toLowerCase() === normalizedParam ||
+        categoryToSlug(category.name) === normalizedParam
+    ) || null
+  )
+}
+
+function Products() {
+  useDocumentTitle("Products | EcoNest")
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchQuery = searchParams.get("search") || ""
-  const requestedCategory = searchParams.get("category") || "All"
+  const requestedCategory = searchParams.get("category") || ""
   const requestedSort = searchParams.get("sort") || "default"
 
-  const activeCategory = categories.some(
-    (category) => category.name === requestedCategory
-  )
-    ? requestedCategory
-    : "All"
+  const matchedCategory = getCategoryByParam(requestedCategory)
+
+  const activeCategory = matchedCategory?.name || "All"
 
   const sortOption = validSortOptions.includes(requestedSort)
     ? requestedSort
@@ -39,7 +56,11 @@ function Products() {
     const nextParams = new URLSearchParams(searchParams)
 
     Object.entries(updates).forEach(([key, value]) => {
-      if (!value || value === "All" || value === "default") {
+      if (
+        !value ||
+        value === "All" ||
+        value === "default"
+      ) {
         nextParams.delete(key)
         return
       }
@@ -102,7 +123,10 @@ function Products() {
 
   const handleCategoryChange = (value) => {
     updateSearchParams({
-      category: value,
+      category:
+        value === "All"
+          ? ""
+          : categoryToSlug(value),
     })
   }
 
@@ -112,8 +136,10 @@ function Products() {
     })
   }
 
+  const trimmedSearchQuery = searchQuery.trim()
+
   return (
-    <>
+    <main aria-label="EcoNest products">
       <ProductHero />
 
       <section className="py-16 sm:py-20">
@@ -133,19 +159,22 @@ function Products() {
             <p
               className="text-sm text-gray-500"
               aria-live="polite"
+              aria-atomic="true"
             >
               {filteredProducts.length === 0 ? (
                 <>
                   No products found
-                  {searchQuery.trim() && (
+
+                  {trimmedSearchQuery && (
                     <>
                       {" "}
                       for{" "}
                       <span className="font-medium text-[#173F35]">
-                        "{searchQuery.trim()}"
+                        "{trimmedSearchQuery}"
                       </span>
                     </>
                   )}
+
                   {activeCategory !== "All" && (
                     <>
                       {" "}
@@ -165,15 +194,17 @@ function Products() {
                   {filteredProducts.length === 1
                     ? "product"
                     : "products"}
-                  {searchQuery.trim() && (
+
+                  {trimmedSearchQuery && (
                     <>
                       {" "}
                       for{" "}
                       <span className="font-medium text-[#173F35]">
-                        "{searchQuery.trim()}"
+                        "{trimmedSearchQuery}"
                       </span>
                     </>
                   )}
+
                   {activeCategory !== "All" && (
                     <>
                       {" "}
@@ -191,7 +222,7 @@ function Products() {
           <ProductGrid products={filteredProducts} />
         </Container>
       </section>
-    </>
+    </main>
   )
 }
 

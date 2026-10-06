@@ -10,7 +10,7 @@ function About() {
   useDocumentTitle("About | Econest");
 
   return (
-    <main>
+    <main aria-label='About EcoNest'>
       <AboutHero />
       <AboutStory />
       <AboutMission />

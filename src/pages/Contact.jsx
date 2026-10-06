@@ -6,8 +6,8 @@ import { submitContactForm } from "../services/contactService"
 import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function Contact() {
+  useDocumentTitle("Contact | EcoNest")
 
-  useDocumentTitle("Contact | Econest");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +15,7 @@ function Contact() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+
   const [submitStatus, setSubmitStatus] = useState({
     type: "",
     message: "",
@@ -40,7 +41,6 @@ function Contact() {
     event.preventDefault()
 
     setIsSubmitting(true)
-
     setSubmitStatus({
       type: "",
       message: "",
@@ -63,10 +63,15 @@ function Contact() {
 
       setSubmitStatus({
         type: "success",
-        message: response.message,
+        message:
+          response.message ||
+          "Your message has been sent successfully.",
       })
     } catch (error) {
-      console.error("Contact form submission failed:", error)
+      console.error(
+        "Contact form submission failed:",
+        error
+      )
 
       setSubmitStatus({
         type: "error",
@@ -78,8 +83,10 @@ function Contact() {
     }
   }
 
+  const isSuccess = submitStatus.type === "success"
+
   return (
-    <main>
+    <main aria-label="Contact EcoNest">
       <section className="bg-[#F7F6F1] py-20 sm:py-24 lg:py-28">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
@@ -92,8 +99,8 @@ function Contact() {
             </h1>
 
             <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
-              Have a question about EcoNest or our products? Send us a
-              message and we'll get back to you.
+              Have a question about EcoNest or our products? Send us
+              a message and we'll get back to you.
             </p>
           </div>
         </Container>
@@ -117,7 +124,7 @@ function Contact() {
 
                   <a
                     href="mailto:hello@econest.com"
-                    className="mt-2 inline-block text-gray-600 transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
+                    className="mt-2 inline-block rounded-sm text-gray-600 transition-colors hover:text-[#173F35] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173F35] focus-visible:ring-offset-2"
                   >
                     hello@econest.com
                   </a>
@@ -165,10 +172,11 @@ function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     autoComplete="name"
+                    maxLength={100}
                     required
                     disabled={isSubmitting}
                     placeholder="Your name"
-                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
+                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus-visible:ring-2 focus-visible:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
@@ -187,10 +195,11 @@ function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     autoComplete="email"
+                    maxLength={254}
                     required
                     disabled={isSubmitting}
                     placeholder="you@example.com"
-                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
+                    className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus-visible:ring-2 focus-visible:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
@@ -207,11 +216,13 @@ function Contact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows="6"
+                    autoComplete="off"
+                    maxLength={2000}
+                    rows={6}
                     required
                     disabled={isSubmitting}
                     placeholder="How can we help?"
-                    className="mt-2 w-full resize-y rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus:ring-2 focus:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
+                    className="mt-2 w-full resize-y rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-[#173F35] focus-visible:ring-2 focus-visible:ring-[#173F35]/20 disabled:cursor-not-allowed disabled:bg-gray-100"
                   />
                 </div>
 
@@ -220,17 +231,16 @@ function Contact() {
                   disabled={isSubmitting}
                   className="w-full sm:w-auto"
                 >
-                  {isSubmitting
-                    ? "Sending..."
-                    : "Send Message"}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
 
                 {submitStatus.message && (
                   <p
-                    role="status"
-                    aria-live="polite"
+                    role={isSuccess ? "status" : "alert"}
+                    aria-live={isSuccess ? "polite" : "assertive"}
+                    aria-atomic="true"
                     className={`rounded-xl px-4 py-3 text-sm font-medium ${
-                      submitStatus.type === "success"
+                      isSuccess
                         ? "bg-[#F7F6F1] text-[#173F35]"
                         : "bg-red-50 text-red-700"
                     }`}

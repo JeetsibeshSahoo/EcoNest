@@ -13,7 +13,11 @@ const NotFound = lazy(() => import("../pages/NotFound"))
 
 function PageLoader() {
   return (
-    <main className="flex min-h-[60vh] items-center justify-center bg-white px-6 py-16">
+    <main 
+      className="flex min-h-[60vh] items-center justify-center bg-white px-6 py-16"
+      aria-busy="true"
+      aria-label="Loading page"
+      >
       <div
         className="text-center"
         role="status"

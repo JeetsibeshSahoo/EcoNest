@@ -9,11 +9,12 @@ import {
   selectCartItemCount,
   selectIsCartEmpty,
 } from "../features/cart/cartSelectors"
+
 import useDocumentTitle from "../hooks/useDocumentTitle"
 
 function Cart() {
+  useDocumentTitle("Cart | EcoNest")
 
-  useDocumentTitle("Cart | Econest");
   const cartItems = useSelector(selectCartItems)
   const cartItemCount = useSelector(selectCartItemCount)
   const isCartEmpty = useSelector(selectIsCartEmpty)
@@ -23,7 +24,10 @@ function Cart() {
   }
 
   return (
-    <main className="bg-white py-10 sm:py-14 lg:py-16">
+    <main
+      aria-label="Shopping cart"
+      className="bg-white py-10 sm:py-14 lg:py-16"
+    >
       <Container>
         <header>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500">
@@ -45,6 +49,7 @@ function Cart() {
             <p
               className="text-sm font-medium text-gray-500"
               aria-live="polite"
+              aria-atomic="true"
             >
               {cartItemCount}{" "}
               {cartItemCount === 1 ? "item" : "items"}
@@ -55,6 +60,7 @@ function Cart() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start lg:gap-12">
           <section
             aria-labelledby="cart-items-heading"
+            aria-live="polite"
             className="rounded-2xl border border-gray-200 bg-white"
           >
             <div className="border-b border-gray-200 px-5 py-4 sm:px-6">
@@ -75,6 +81,7 @@ function Cart() {
               ))}
             </div>
           </section>
+
           <div className="lg:sticky lg:top-6">
             <CartSummary />
           </div>
