@@ -1,6 +1,17 @@
-import React from 'react'
+import { lazy, Suspense } from "react"
+import { Route, Routes } from "react-router-dom"
+import MainLayout from "../layouts/MainLayout"
+const Home = lazy(() => import("../pages/Home"))
+const About = lazy(() => import("../pages/About"))
+const Products = lazy(() => import("../pages/Products"))
+const ProductDetails = lazy(
+  () => import("../pages/ProductDetails")
+)
+const Cart = lazy(() => import("../pages/Cart"))
+const Contact = lazy(() => import("../pages/Contact"))
+const NotFound = lazy(() => import("../pages/NotFound"))
 
-function PageRoute() {
+function PageLoader() {
   return (
     <main 
       className="flex min-h-[60vh] items-center justify-center bg-white px-6 py-16"
@@ -47,4 +58,4 @@ function AppRoutes() {
   )
 }
 
-export default PageRoute
+export default AppRoutes
