@@ -36,6 +36,127 @@ Build like a real-world developer, not like a tutorial follower.
 . Vite — Development server and build tool
 . Git — Version control
 . GitHub — Repository and project management
+
+## ⚙️ Setup & Run Instructions
+
+Follow the steps below to run EcoNest locally on your machine.
+
+### 📋 Prerequisites
+
+Make sure you have the following installed:
+
+- **Node.js** (LTS version recommended)
+- **npm** (comes with Node.js)
+- **Git**
+
+You can verify your installations with:
+
+```bash
+node -v
+npm -v
+git --version
+```
+
+---
+
+### 📥 1. Clone the Repository
+
+Clone the EcoNest repository to your local machine:
+
+```bash
+git clone <your-repository-url>
+```
+
+Navigate into the project directory:
+
+```bash
+cd EcoNest
+```
+
+---
+
+### 📦 2. Install Dependencies
+
+Install all required project dependencies:
+
+```bash
+npm install
+```
+
+---
+
+### ▶️ 3. Start the Development Server
+
+Run the following command:
+
+```bash
+npm run dev
+```
+
+Vite will start the development server and display a local URL in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+Open the URL in your browser to view the application.
+
+---
+
+### 🏗️ 4. Create a Production Build
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+The production-ready files will be generated inside the:
+
+```text
+dist/
+```
+
+directory.
+
+---
+
+### 👀 5. Preview the Production Build
+
+After creating the production build, you can preview it locally using:
+
+```bash
+npm run preview
+```
+
+---
+
+### 🧹 Useful Commands
+
+| Command | Description |
+|---|---|
+| `npm install` | Install project dependencies |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run preview` | Preview the production build |
+
+---
+
+### 📝 Notes
+
+- Make sure you are using a supported **Node.js LTS version**.
+- Run `npm install` whenever dependencies are added or changed.
+- If the development server is already using port `5173`, Vite may automatically use another available port.
+- If you encounter dependency issues, try removing `node_modules` and `package-lock.json`, then run `npm install` again.
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+```
+
+> **Note:** On Windows, you can delete the `node_modules` folder and `package-lock.json` manually before running `npm install`.
+
 ## 📂 Project Structure
 EcoNest/
 ├── public/
@@ -221,3 +342,19 @@ The project is being developed incrementally with the goal of eventually transfo
 Built with ❤️ using React, Tailwind CSS, Redux Toolkit, React Router, and modern JavaScript.
 
 EcoNest — Building a cleaner digital shopping experience. 🌱
+
+## 📸 Screenshots
+
+Explore the EcoNest interface through the following screenshots.
+
+### 🏠 Home Page
+![EcoNest Home Page](./screenshots/home.png)
+
+### 🛍️ Products Page
+![EcoNest Products Page](./screenshots/products.png)
+
+### 📦 Product Details
+![EcoNest Product Details](./screenshots/product-details.png)
+
+### 🛒 Shopping Cart
+![EcoNest Shopping Cart](./screenshots/cart.png)
