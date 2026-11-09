@@ -1,4 +1,4 @@
-import { createElement } from "react"
+import { createElement } from "react";
 
 function SectionTitle({
   eyebrow,
@@ -11,7 +11,7 @@ function SectionTitle({
   const alignment =
     align === "center"
       ? "items-center text-center"
-      : "items-start text-left"
+      : "items-start text-left";
 
   return (
     <div
@@ -38,7 +38,7 @@ function SectionTitle({
         </p>
       )}
     </div>
-  )
+  );
 }
 
-export default SectionTitle
+export default SectionTitle;
